@@ -37,7 +37,6 @@ body, #root, .ant-layout {
 .search-and-filter-container {
   display: flex;
   justify-content: space-between;
-  margin-bottom: 20px;
 }
 
 /* Listeleme Stilleri */
@@ -63,6 +62,13 @@ body, #root, .ant-layout {
   }
 
   
+}
+.select-container {
+  display: flex;
+  justify-content: flex-end;
+  align-items: center;
+  gap: 10px; /* Select komponentleri arasında boşluk */
+  margin-bottom: 10px;
 }
 .list-item-content {
   display: flex;

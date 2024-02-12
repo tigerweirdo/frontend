@@ -1,7 +1,7 @@
 // src/BorcEkle.js
 import React from 'react';
 import axios from 'axios';
-import { Form, Input, Checkbox, Button, DatePicker } from 'antd';
+import { Form, Input, Checkbox, Button, DatePicker,message } from 'antd';
 import '../App.css'
 
 
@@ -9,19 +9,29 @@ function BorcEkle() {
     const [form] = Form.useForm();
 
     const onFinish = (values) => {
-        axios.post('http://localhost:3001/api/borclar', {
-            ...values,
-            fatura_durumu: values.fatura_durumu || false,
-            tarih: values.tarih.format('YYYY-MM-DD'),
-            vadesi: values.vadesi.format('YYYY-MM-DD'),
-            odendi_mi: false
-        })
-        .then(response => {
-            console.log(response.data);
-            form.resetFields(); // Formu sıfırla
-        })
-        .catch(error => console.log(error));
-    };
+        // Tarih değerlerini kontrol et
+        const formattedValues = {
+          ...values,
+          sirket_ismi: values.sirketIsmi,
+          fatura_durumu: values.fatura_durumu || false,
+          tarih: values.tarih ? values.tarih.format('YYYY-MM-DD') : null,
+          vadesi: values.vadesi ? values.vadesi.format('YYYY-MM-DD') : null,
+          odendi_mi: false
+        };
+    
+        axios.post('http://localhost:3001/api/borclar', formattedValues)
+          .then(response => {
+            message.success('Borç başarıyla eklendi!');
+            form.resetFields();
+          })
+          .catch(error => {
+            const errorMsg = error.response && error.response.data && error.response.data.message
+              ? error.response.data.message
+              : 'Borç eklenirken bir hata oluştu.';
+            console.log(errorMsg);
+            message.error(errorMsg);
+          });
+      };
 
     return (
         <div className="form-container">
