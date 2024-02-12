@@ -62,7 +62,18 @@ body, #root, .ant-layout {
     margin: 10px; /* Mobil cihazlarda kenar boşluklarını azaltın */
   }
 
-  .search-and-filter-container {
-    flex-direction: column; /* Mobil cihazlarda düğmeleri sütun halinde düzenleyin */
-  }
+  
 }
+.list-item-content {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  width: 100%;
+}
+
+.list-item-actions {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+}
+

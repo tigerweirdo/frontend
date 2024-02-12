@@ -1,10 +1,10 @@
 import React, { useEffect, useState } from 'react';
 import axios from 'axios';
-import { List, Button, Tag, Modal, message, Input, Select, Typography } from 'antd';
+import { List, Button, Modal, message, Input, Select, Typography } from 'antd';
 import { ExclamationCircleOutlined, CheckOutlined, CloseOutlined,DeleteOutlined,EditOutlined } from '@ant-design/icons';
 import moment from 'moment';
 import BorcDuzenleFormu from './BorcDuzenleme';
-import './App.css'
+import '../App.css'
 
 const { confirm } = Modal;
 const { Search } = Input;
@@ -133,37 +133,32 @@ function BorcListesi() {
                 bordered
                 dataSource={filtrelenmisVeSiralanmisBorclar}
                 renderItem={item => (
-                    <List.Item
-                        actions={[
-                            <Button
-                                onClick={() => toggleOdemeDurumu(item._id, item.odendi_mi)}
-                                type={item.odendi_mi ? "default" : "primary"}
-                            >
-                                {item.odendi_mi ? <CloseOutlined /> : <CheckOutlined />}
-
-                            </Button>,
-                            <Button  onClick={() => borcuSil(item._id)}>
-                               <DeleteOutlined />
-                            </Button>,
-                            <Button  onClick={() => onDuzenleClick(item)}><EditOutlined /></Button> // Düzenle butonu eklendi
-
-                        ]}
-                    >
-                        <List.Item.Meta
-                            title={item.sirket_ismi}
-                            description={
-                                <>
-                                    <Text>Bakiye: {item.bakiye} TL</Text><br />
-                                    <Text>Fatura Durumu: {item.fatura_durumu ? "Faturalı" : "Faturasız"}</Text><br />
-                                    <Text>Tarih: {moment(item.tarih).format('DD/MM/YYYY')}</Text><br />
-                                    <Text>Vadesi: {moment(item.vadesi).format('DD/MM/YYYY')}</Text>
-                                </>
-                            }
-                        />
-                        <Tag color={item.odendi_mi ? "green" : "volcano"}>
-                            {item.odendi_mi ? "Ödendi" : "Ödenmedi"}
-                        </Tag>
-                    </List.Item>
+                    <List.Item>
+  <div className="list-item-content">
+    <List.Item.Meta
+      title={item.sirket_ismi}
+      description={
+        <>
+          <Text>Bakiye: {item.bakiye} TL</Text><br />
+          <Text>Fatura Durumu: {item.fatura_durumu ? "Faturalı" : "Faturasız"}</Text><br />
+          <Text>Tarih: {moment(item.tarih).format('DD/MM/YYYY')}</Text><br />
+          <Text>Vadesi: {moment(item.vadesi).format('DD/MM/YYYY')}</Text>
+        </>
+      }
+    />
+    <div className="list-item-actions">
+      <Button onClick={() => toggleOdemeDurumu(item._id, item.odendi_mi)} type={item.odendi_mi ? "default" : "primary"}>
+        {item.odendi_mi ? <CloseOutlined /> : <CheckOutlined />}
+      </Button>
+      <Button onClick={() => borcuSil(item._id)}>
+        <DeleteOutlined />
+      </Button>
+      <Button onClick={() => onDuzenleClick(item)}>
+        <EditOutlined />
+      </Button>
+    </div>
+  </div>
+</List.Item>
                 )}
             />
             {isDuzenleModalVisible && <BorcDuzenleFormu

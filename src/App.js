@@ -2,8 +2,8 @@
 import React from 'react';
 import { Layout, Menu } from 'antd';
 import { BrowserRouter as Router, Routes, Route, Link } from 'react-router-dom';
-import BorcEkle from './BorcEkle';
-import BorcListesi from './BorcListesi';
+import BorcEkle from './components/BorcEkle';
+import BorcListesi from './components/BorcListesi';
 import './App.css'
 
 
