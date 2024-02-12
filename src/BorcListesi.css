@@ -1,0 +1,31 @@
+/* BorcListesi.css */
+.borc-listesi-container {
+    padding: 20px;
+    background-color: #f0f2f5;
+    border-radius: 8px;
+}
+
+.borc-actions button {
+    margin-right: 8px;
+}
+
+.search-and-filter-container {
+    display: flex;
+    justify-content: space-between;
+    margin-bottom: 20px;
+}
+
+.list-header {
+    background-color: #1890ff;
+    color: white;
+    padding: 10px;
+    border-radius: 8px 8px 0 0;
+}
+
+.list-footer {
+    background-color: #1890ff;
+    color: white;
+    padding: 10px;
+    border-radius: 0 0 8px 8px;
+    text-align: center;
+}

@@ -1,38 +1,68 @@
-.App {
-  text-align: center;
+/* BorcEkleme.css veya App.css içindeki genel stil tanımları */
+
+/* Genel Sayfa Stilleri */
+body, #root, .ant-layout {
+  height: 100%;
+  background-color: #f0f2f5; /* Arka plan rengini ayarlayın */
 }
 
-.App-logo {
-  height: 40vmin;
-  pointer-events: none;
+/* Form Stilleri */
+.form-container {
+  max-width: 600px; /* Form genişliğini sınırlayın */
+  margin: 30px auto; /* Ortalama */
+  padding: 24px;
+  background-color: #fff; /* Beyaz arka plan */
+  border-radius: 8px; /* Köşeleri yuvarlak yapın */
+  box-shadow: 0 3px 6px #ccc; /* Gölge ekleyin */
 }
 
-@media (prefers-reduced-motion: no-preference) {
-  .App-logo {
-    animation: App-logo-spin infinite 20s linear;
-  }
+/* Buton Stilleri */
+.ant-btn-primary {
+  background-color: #1890ff; /* Mavi renk tonu */
+  border-color: #1890ff;
 }
 
-.App-header {
-  background-color: #282c34;
-  min-height: 100vh;
+.ant-btn-danger {
+  color: #ff4d4f; /* Kırmızı renk tonu */
+  background-color: #1890ff; /* Mavi renk tonu */
+
+  border-color: #ff4d4f;
+}
+
+.ant-btn {
+  margin-right: 8px; /* Butonlar arası boşluk */
+}
+
+/* Arama ve Sıralama Bileşenleri */
+.search-and-filter-container {
   display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  font-size: calc(10px + 2vmin);
-  color: white;
+  justify-content: space-between;
+  margin-bottom: 20px;
 }
 
-.App-link {
-  color: #61dafb;
+/* Listeleme Stilleri */
+.list-header {
+  background-color: #1890ff; /* Mavi başlık rengi */
+  color: #fff; /* Beyaz yazı rengi */
+  padding: 10px 20px; /* Başlık padding'i */
+  border-radius: 8px 8px 0 0; /* Üst köşeleri yuvarlak yapın */
 }
 
-@keyframes App-logo-spin {
-  from {
-    transform: rotate(0deg);
+.list-footer {
+  background-color: #1890ff; /* Mavi alt bilgi rengi */
+  color: #fff; /* Beyaz yazı rengi */
+  padding: 10px 20px; /* Alt bilgi padding'i */
+  border-radius: 0 0 8px 8px; /* Alt köşeleri yuvarlak yapın */
+  text-align: center; /* Metni ortala */
+}
+
+/* Responsive Tasarım */
+@media (max-width: 768px) {
+  .form-container {
+    margin: 10px; /* Mobil cihazlarda kenar boşluklarını azaltın */
   }
-  to {
-    transform: rotate(360deg);
+
+  .search-and-filter-container {
+    flex-direction: column; /* Mobil cihazlarda düğmeleri sütun halinde düzenleyin */
   }
 }
