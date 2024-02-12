@@ -132,13 +132,7 @@ function BorcListesi() {
                     onSearch={value => setAramaTerimi(value)}
                     style={{ width: 200, marginBottom: 10, marginTop: 10 }}
                 />
-                <Radio.Group defaultValue="tumu"
-                    style={{ marginTop: 10 }}
-                    onChange={(e) => setSiralamaKriteri(e.target.value)}>
-                    <Radio.Button value="tumu">Tümü</Radio.Button>
-                    <Radio.Button value="odendi">Ödendi</Radio.Button>
-                    <Radio.Button value="odenmedi">Ödenmedi</Radio.Button>
-                </Radio.Group>
+              
              
                 <Select
                     defaultValue="siralama"
@@ -154,7 +148,15 @@ function BorcListesi() {
                     <Option value="vadeAzalan">Vadeye Göre Azalan</Option>
                 </Select>
             </div>
-            <div className="select-container">
+          <div className="select-and-radio-container">
+            <div className="radio">  <Radio.Group defaultValue="tumu"
+                    onChange={(e) => setSiralamaKriteri(e.target.value)}>
+                    <Radio.Button value="tumu">Tümü</Radio.Button>
+                    <Radio.Button value="odendi">Ödendi</Radio.Button>
+                    <Radio.Button value="odenmedi">Ödenmedi</Radio.Button>
+                </Radio.Group></div>
+                <div className="select-container">
+
   <Select
     defaultValue={moment().month()}
     style={{ width: 120 }}
@@ -173,6 +175,8 @@ function BorcListesi() {
       <Option key={year} value={year}>{year}</Option>
     ))}
   </Select>
+</div>
+
 </div>
             <List
                 header={<div>Borç Listesi</div>}

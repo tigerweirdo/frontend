@@ -56,20 +56,26 @@ body, #root, .ant-layout {
 }
 
 /* Responsive Tasarım */
-@media (max-width: 768px) {
+@media (max-width: 1000px) {
   .form-container {
     margin: 10px; /* Mobil cihazlarda kenar boşluklarını azaltın */
   }
-
+  .select-and-radio-container {
+    flex-direction: column;
+    justify-content:center;
+    align-items: center;
+  }
+  .radio{
+    margin-bottom: 10px;
+  }
   
 }
-.select-container {
+.select-and-radio-container {
   display: flex;
-  justify-content: flex-end;
-  align-items: center;
-  gap: 10px; /* Select komponentleri arasında boşluk */
+  justify-content: space-between;
   margin-bottom: 10px;
 }
+
 .list-item-content {
   display: flex;
   justify-content: space-between;
