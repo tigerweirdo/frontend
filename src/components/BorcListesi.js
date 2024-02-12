@@ -158,21 +158,21 @@ function BorcListesi() {
                 <div className="select-container">
 
   <Select
-    defaultValue={moment().month()}
-    style={{ width: 120 }}
-    onChange={value => setSeciliAy(value)}
-  >
-    {moment.months().map((month, index) => (
-      <Option key={index} value={index}>{month}</Option>
-    ))}
-  </Select>
-  <Select
     defaultValue={seciliYil}
     style={{ width: 100 }}
     onChange={setSeciliYil}
   >
     {getOzgunYillar().map(year => (
       <Option key={year} value={year}>{year}</Option>
+    ))}
+  </Select>
+  <Select
+    defaultValue={moment().month()}
+    style={{ width: 120 }}
+    onChange={value => setSeciliAy(value)}
+  >
+    {moment.months().map((month, index) => (
+      <Option key={index} value={index}>{month}</Option>
     ))}
   </Select>
 </div>
