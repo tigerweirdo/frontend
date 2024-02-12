@@ -21,7 +21,7 @@ const BorcDuzenleFormu = ({ visible, onCancel, currentBorc, onSuccess }) => {
           vadesi: values.vadesi.format('YYYY-MM-DD'),
           fatura_durumu: values.fatura_durumu === 'true',
         };
-        axios.put(`https://oytuntekstil-3e2e42d14a0e.herokuapp.com/api/borclar/${currentBorc._id}`, yeniBilgiler)
+        axios.put(`https://oytuntekstil-06638c857215.herokuapp.com/api/borclar/${currentBorc._id}`, yeniBilgiler)
   .then(() => {
     message.success('Borç başarıyla güncellendi');
     form.resetFields();

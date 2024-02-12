@@ -29,7 +29,7 @@ function BorcListesi() {
     }, []);
 
     const borclariYukle = () => {
-        axios.get('https://oytuntekstil-3e2e42d14a0e.herokuapp.com/api/borclar')
+        axios.get('https://oytuntekstil-06638c857215.herokuapp.com/api/borclar')
             .then(response => {
                 setBorclar(response.data);
             })
@@ -42,7 +42,7 @@ function BorcListesi() {
             icon: <ExclamationCircleOutlined />,
             content: 'Bu işlem geri alınamaz',
             onOk() {
-                axios.delete(`https://oytuntekstil-3e2e42d14a0e.herokuapp.com/api/borclar/${id}`)
+                axios.delete(`https://oytuntekstil-06638c857215.herokuapp.com/api/borclar/${id}`)
                     .then(() => {
                         message.success('Borç başarıyla silindi');
                         borclariYukle(); // Listeyi güncelle
@@ -57,7 +57,7 @@ function BorcListesi() {
     
 
     const toggleOdemeDurumu = (id, odendiMi) => {
-        axios.patch(`https://oytuntekstil-3e2e42d14a0e.herokuapp.com/api/borclar/${id}`, { odendi_mi: !odendiMi })
+        axios.patch(`https://oytuntekstil-06638c857215.herokuapp.com/api/borclar/${id}`, { odendi_mi: !odendiMi })
             .then(() => {
                 // Borç başarıyla güncellendiğinde, yerel state'i de güncelleyelim.
                 const guncellenmisBorclar = borclar.map(borc => {

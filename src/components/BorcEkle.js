@@ -19,7 +19,7 @@ function BorcEkle() {
           odendi_mi: false
         };
     
-        axios.post('https://oytuntekstil-3e2e42d14a0e.herokuapp.com/api/borclar', formattedValues)
+        axios.post('https://oytuntekstil-06638c857215.herokuapp.com/api/borclar', formattedValues)
           .then(response => {
             message.success('Borç başarıyla eklendi!');
             form.resetFields();
