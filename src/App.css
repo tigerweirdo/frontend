@@ -140,7 +140,7 @@ display: none;  }
 }
 
 .header-container .ant-menu-item:hover {
-  background-color: #e57373 !important; /* Özelleştirilmiş hover arka plan rengi */
+  background-color: #ff9f9f !important; /* Özelleştirilmiş hover arka plan rengi */
 }
 
 .header-logo {
