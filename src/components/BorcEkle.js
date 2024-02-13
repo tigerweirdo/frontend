@@ -50,7 +50,7 @@ function BorcEkle() {
             <Form.Item name="tarih" label="Tarih" rules={[{ required: true }]}>
                 <DatePicker />
             </Form.Item>
-            <Form.Item name="vadesi" label="Vadesi" rules={[{ required: true }]}>
+            <Form.Item name="vadesi" label="Vadesi">
                 <DatePicker />
             </Form.Item>
             <Form.Item>
