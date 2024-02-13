@@ -14,20 +14,24 @@ function App() {
   return (
     <Router>
       <Layout className="layout">
-        <Header>
+        <Header style={{ backgroundColor: '#d61a67' }} >
           <div className="logo" />
-          <Menu theme="dark" mode="horizontal" defaultSelectedKeys={['1']}>
-            <Menu.Item key="1">
-              <Link to="/">Gider Listesi</Link>
-            </Menu.Item>
-            <Menu.Item key="2">
-              <Link to="/borc-ekle">Gider Ekle</Link>
-            </Menu.Item>
-          </Menu>
+          <Header className="header-container">
+  <div className="logo" />
+  <Menu  style={{ backgroundColor: '#d61a67', color: '#ffdec2',flex: 1 }} theme="dark" mode="horizontal" defaultSelectedKeys={['1']}>
+    <Menu.Item  style={{ backgroundColor: '#d61a67', color: '#ffdec2' }} key="1">
+      <Link to="/">Gider Listesi</Link>
+    </Menu.Item>
+    <Menu.Item  style={{ backgroundColor: '#d61a67', color: '#ffdec2' }} key="2">
+      <Link to="/borc-ekle">Gider Ekle</Link>
+    </Menu.Item>
+  </Menu>
+  <img src="/oytun.png" alt="Logo" className="header-logo"/>
+</Header>
         </Header>
         <Content style={{ padding: '0 50px' }}>
           <div className="site-layout-content">
-            <Routes> {/* Burada Switch yerine Routes kullanıldı */}
+            <Routes> 
               <Route path="/borc-ekle" element={<BorcEkle />} />
               <Route path="/" element={<BorcListesi />} />
             </Routes>

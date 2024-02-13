@@ -68,7 +68,15 @@ body, #root, .ant-layout {
   .radio{
     margin-bottom: 10px;
   }
-  
+  .header-logo {
+display: none;  }
+
+.header-container {
+  display: flex;
+  align-items: center;
+  background-color: #d61a67;
+  justify-content: center;
+}
 }
 .select-and-radio-container {
   display: flex;
@@ -115,3 +123,43 @@ body, #root, .ant-layout {
   margin-left: 8px;
 }
 
+.header-container {
+  display: flex;
+  align-items: center;
+  background-color: #d61a67;
+}
+
+.header-logo {
+  height: 52px; /* Logonun yüksekliğini ayarlayın */
+}
+.header-container {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  height: 64px; /* Ant Design'ın varsayılan header yüksekliği */
+}
+
+.header-container .ant-menu-item:hover {
+  background-color: #e57373 !important; /* Özelleştirilmiş hover arka plan rengi */
+}
+
+.header-logo {
+  height: 52px; /* Logonun yüksekliğini ayarlayın */
+  margin-right: 20px; /* Sağdaki boşluk */
+}
+
+/* Ekran genişliği 768px'den küçük olduğunda menü öğeleri için stiller */
+@media (max-width: 768px) {
+  .header-container .ant-menu {
+    justify-content: flex-end; /* Menü öğelerini sağa hizala */
+  }
+
+  .header-container {
+    flex-direction: column; /* Küçük ekranlarda dikey hizalama */
+  }
+
+  .header-container .ant-menu {
+    width: 100%; /* Menüyü genişlet */
+    justify-content: space-between; /* Menü öğelerini kenarlara hizala */
+  }
+}
