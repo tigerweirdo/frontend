@@ -23,13 +23,13 @@ const BorcDuzenleFormu = ({ visible, onCancel, currentBorc, onSuccess }) => {
         };
         axios.put(`https://oytuntekstil-06638c857215.herokuapp.com/api/borclar/api/borclar/${currentBorc._id}`, yeniBilgiler)
   .then(() => {
-    message.success('Borç başarıyla güncellendi');
+    message.success('Gider başarıyla güncellendi');
     form.resetFields();
     onSuccess(); // Başarı durumunda dış bileşeni güncelle
   })
   .catch(error => {
     console.log(error);
-    message.error('Borç güncellenirken bir hata oluştu');
+    message.error('Gider güncellenirken bir hata oluştu');
   });
       })
       .catch(info => {
@@ -40,7 +40,7 @@ const BorcDuzenleFormu = ({ visible, onCancel, currentBorc, onSuccess }) => {
 
   return (
     <Modal
-      title="Borç Düzenle"
+      title="Gider Düzenle"
       visible={visible}
       onOk={handleOk}
       onCancel={onCancel}

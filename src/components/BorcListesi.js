@@ -54,7 +54,7 @@ const [filtrelenmisVeSiralanmisBorclar, setFiltrelenmisVeSiralanmisBorclar] = us
             onOk() {
                 axios.delete(`https://oytuntekstil-06638c857215.herokuapp.com/api/borclar/${id}`)
                     .then(() => {
-                        message.success('Borç başarıyla silindi');
+                        message.success('Gider başarıyla silindi');
                         borclariYukle(); // Listeyi güncelle
                     })
                     .catch(error => console.log(error));
@@ -69,19 +69,19 @@ const [filtrelenmisVeSiralanmisBorclar, setFiltrelenmisVeSiralanmisBorclar] = us
     const toggleOdemeDurumu = (id, odendiMi) => {
         axios.patch(`https://oytuntekstil-06638c857215.herokuapp.com/api/borclar/${id}`, { odendi_mi: !odendiMi })
             .then(() => {
-                // Borç başarıyla güncellendiğinde, yerel state'i de güncelleyelim.
+                // Gider başarıyla güncellendiğinde, yerel state'i de güncelleyelim.
                 const guncellenmisBorclar = borclar.map(borc => {
                     if (borc._id === id) {
                         return { ...borc, odendi_mi: !odendiMi };
                     }
                     return borc;
                 });
-                setBorclar(guncellenmisBorclar); // Yeni borç listesi ile state'i güncelle
-                message.success(`Borç ${!odendiMi ? 'ödendi' : 'ödenmedi'} olarak işaretlendi`);
+                setBorclar(guncellenmisBorclar); // Yeni Gider listesi ile state'i güncelle
+                message.success(`Gider ${!odendiMi ? 'ödendi' : 'ödenmedi'} olarak işaretlendi`);
             })
             .catch(error => {
-                console.error("Borç güncellenirken bir hata oluştu", error);
-                message.error("Borç güncellenirken bir hata oluştu");
+                console.error("Gider güncellenirken bir hata oluştu", error);
+                message.error("Gider güncellenirken bir hata oluştu");
             });
     };
 
@@ -206,19 +206,19 @@ const [filtrelenmisVeSiralanmisBorclar, setFiltrelenmisVeSiralanmisBorclar] = us
               header={
                 <div className="borc-ozet-header">
                     <Typography.Title level={4} className="borc-ozet-title">
-                        Borç Özeti
+                        Gider Özeti
                     </Typography.Title>
                     <div className="borc-ozet-info">
                         <div>
-                            <Text strong>Toplam Borç:</Text>
+                            <Text strong>Toplam Gider:</Text>
                             <Text className="borc-ozet-info-text toplam-borc">{toplamBorc} TL</Text>
                         </div>
                         <div>
-                            <Text strong>Ödenen Borç:</Text>
+                            <Text strong>Ödenen Gider:</Text>
                             <Text className="borc-ozet-info-text odenen-borc">{odenenBorc} TL</Text>
                         </div>
                         <div>
-                            <Text strong>Ödenmeyen Borç:</Text>
+                            <Text strong>Ödenmeyen Gider:</Text>
                             <Text className="borc-ozet-info-text odenmeyen-borc">{odenmeyenBorc} TL</Text>
                         </div>
                     </div>

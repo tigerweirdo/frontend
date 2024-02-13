@@ -21,13 +21,13 @@ function BorcEkle() {
     
         axios.post('https://oytuntekstil-06638c857215.herokuapp.com/api/borclar', formattedValues)
           .then(response => {
-            message.success('Borç başarıyla eklendi!');
+            message.success('Gider başarıyla eklendi!');
             form.resetFields();
           })
           .catch(error => {
             const errorMsg = error.response && error.response.data && error.response.data.message
               ? error.response.data.message
-              : 'Borç eklenirken bir hata oluştu.';
+              : 'Gider eklenirken bir hata oluştu.';
             console.log(errorMsg);
             message.error(errorMsg);
           });
@@ -37,7 +37,7 @@ function BorcEkle() {
         <div className="form-container">
 
         <Form className="borc-form-container"form={form} onFinish={onFinish} layout="vertical" style={{ maxWidth: 400 }}>
-            <h2>Yeni Borç Ekle</h2>
+            <h2>Yeni Gider Ekle</h2>
             <Form.Item label="Şirket İsmi" name="sirketIsmi" rules={[{ required: true, message: 'Lütfen şirket ismini girin!' }]}>
             <Input placeholder="Şirket ismini girin" />
             </Form.Item>

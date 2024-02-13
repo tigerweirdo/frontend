@@ -18,10 +18,10 @@ function App() {
           <div className="logo" />
           <Menu theme="dark" mode="horizontal" defaultSelectedKeys={['1']}>
             <Menu.Item key="1">
-              <Link to="/">Borç Listesi</Link>
+              <Link to="/">Gider Listesi</Link>
             </Menu.Item>
             <Menu.Item key="2">
-              <Link to="/borc-ekle">Borç Ekle</Link>
+              <Link to="/borc-ekle">Gider Ekle</Link>
             </Menu.Item>
           </Menu>
         </Header>
