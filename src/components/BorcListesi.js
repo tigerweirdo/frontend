@@ -23,6 +23,11 @@ function BorcListesi() {
     const [currentBorc, setCurrentBorc] = useState(null); // Bu state eksikti, ekledim.
     const [seciliAy, setSeciliAy] = useState(moment().month());
     const [seciliYil, setSeciliYil] = useState(moment().year());
+    const [toplamBorc, setToplamBorc] = useState(0);
+const [odenenBorc, setOdenenBorc] = useState(0);
+const [odenmeyenBorc, setOdenmeyenBorc] = useState(0);
+const [filtrelenmisVeSiralanmisBorclar, setFiltrelenmisVeSiralanmisBorclar] = useState([]);
+
 
     useEffect(() => {
         borclariYukle();
@@ -35,6 +40,11 @@ function BorcListesi() {
             })
             .catch(error => console.log(error));
     };
+    useEffect(() => {
+        borclariYukle();
+    }, []);
+    
+   
 
     const borcuSil = (id) => {
         confirm({
@@ -89,35 +99,49 @@ function BorcListesi() {
         borclariYukle(); // Listeyi güncelle
     };
 
-    const filtrelenmisVeSiralanmisBorclar = borclar
-        .filter(borc => borc.sirket_ismi.toLowerCase().includes(aramaTerimi.toLowerCase()))
-        .filter(borc => {
-            if (siralamaKriteri === 'odendi') return borc.odendi_mi === true;
-            if (siralamaKriteri === 'odenmedi') return borc.odendi_mi === false;
-            return true; // Eğer 'odendi' veya 'odenmedi' seçilmediyse, tüm borçları döndür
-        })
-        .filter(borc => {
-            const borcTarihi = new Date(borc.tarih);
-            return borcTarihi.getMonth() === seciliAy && borcTarihi.getFullYear() === seciliYil;
-        })
-        .sort((a, b) => {
-            switch (siralamaKriteri) {
-                case 'artan':
-                    return a.bakiye - b.bakiye;
-                case 'azalan':
-                    return b.bakiye - a.bakiye;
-                case 'tarihArtan':
-                    return new Date(a.tarih) - new Date(b.tarih);
-                case 'tarihAzalan':
-                    return new Date(b.tarih) - new Date(a.tarih);
-                case 'vadeArtan':
-                    return new Date(a.vadesi) - new Date(b.vadesi);
-                case 'vadeAzalan':
-                    return new Date(b.vadesi) - new Date(a.vadesi);
-                default:
-                    return 0;
-            }
-        });
+    useEffect(() => {
+        const filtrelenmisVeSiralanmis = borclar
+            .filter(borc => borc.sirket_ismi.toLowerCase().includes(aramaTerimi.toLowerCase()))
+            .filter(borc => {
+                if (siralamaKriteri === 'odendi') return borc.odendi_mi === true;
+                if (siralamaKriteri === 'odenmedi') return borc.odendi_mi === false;
+                return true;
+            })
+            .filter(borc => {
+                const borcTarihi = new Date(borc.tarih);
+                return borcTarihi.getMonth() === seciliAy && borcTarihi.getFullYear() === seciliYil;
+            })
+            .sort((a, b) => {
+                switch (siralamaKriteri) {
+                    case 'artan':
+                        return a.bakiye - b.bakiye;
+                    case 'azalan':
+                        return b.bakiye - a.bakiye;
+                    case 'tarihArtan':
+                        return new Date(a.tarih) - new Date(b.tarih);
+                    case 'tarihAzalan':
+                        return new Date(b.tarih) - new Date(a.tarih);
+                    case 'vadeArtan':
+                        return new Date(a.vadesi) - new Date(b.vadesi);
+                    case 'vadeAzalan':
+                        return new Date(b.vadesi) - new Date(a.vadesi);
+                    default:
+                        return 0;
+                }
+            });
+            setFiltrelenmisVeSiralanmisBorclar(filtrelenmisVeSiralanmis);
+
+
+        const toplam = filtrelenmisVeSiralanmis.reduce((acc, borc) => acc + borc.bakiye, 0);
+        const odenen = filtrelenmisVeSiralanmis.filter(borc => borc.odendi_mi).reduce((acc, borc) => acc + borc.bakiye, 0);
+        const odenmeyen = filtrelenmisVeSiralanmis.filter(borc => !borc.odendi_mi).reduce((acc, borc) => acc + borc.bakiye, 0);
+
+        setToplamBorc(toplam);
+        setOdenenBorc(odenen);
+        setOdenmeyenBorc(odenmeyen);
+    }, [borclar, aramaTerimi, siralamaKriteri, seciliAy, seciliYil]);
+
+        
         const getOzgunYillar = () => {
             const yillar = borclar.map(borc => new Date(borc.tarih).getFullYear());
             return [...new Set(yillar)].sort((a, b) => a - b);
@@ -178,10 +202,31 @@ function BorcListesi() {
 </div>
 
 </div>
-            <List
-                header={<div>Borç Listesi</div>}
-                bordered
-                dataSource={filtrelenmisVeSiralanmisBorclar}
+<List
+              header={
+                <div className="borc-ozet-header">
+                    <Typography.Title level={4} className="borc-ozet-title">
+                        Borç Özeti
+                    </Typography.Title>
+                    <div className="borc-ozet-info">
+                        <div>
+                            <Text strong>Toplam Borç:</Text>
+                            <Text className="borc-ozet-info-text toplam-borc">{toplamBorc} TL</Text>
+                        </div>
+                        <div>
+                            <Text strong>Ödenen Borç:</Text>
+                            <Text className="borc-ozet-info-text odenen-borc">{odenenBorc} TL</Text>
+                        </div>
+                        <div>
+                            <Text strong>Ödenmeyen Borç:</Text>
+                            <Text className="borc-ozet-info-text odenmeyen-borc">{odenmeyenBorc} TL</Text>
+                        </div>
+                    </div>
+                </div>
+            }
+            
+              bordered
+              dataSource={filtrelenmisVeSiralanmisBorclar}
                 renderItem={item => (
                     <List.Item>
                         <div className="list-item-content">
