@@ -18,10 +18,10 @@ const BorcDuzenleFormu = ({ visible, onCancel, currentBorc, onSuccess }) => {
         const yeniBilgiler = {
           ...values,
           tarih: values.tarih.format('YYYY-MM-DD'),
-          vadesi: values.vadesi.format('YYYY-MM-DD'),
+          vadesi: values.vadesi ? values.vadesi.format('YYYY-MM-DD') : undefined, 
           fatura_durumu: values.fatura_durumu === 'true',
         };
-        axios.put(`https://oytuntekstil-06638c857215.herokuapp.com/api/borclar/${currentBorc._id}`, yeniBilgiler)
+        axios.put(`https://oytuntekstil-06638c857215.herokuapp.com/api/borclar/api/borclar/${currentBorc._id}`, yeniBilgiler)
   .then(() => {
     message.success('Borç başarıyla güncellendi');
     form.resetFields();
@@ -73,9 +73,9 @@ const BorcDuzenleFormu = ({ visible, onCancel, currentBorc, onSuccess }) => {
         <Form.Item name="tarih" label="Tarih" rules={[{ required: true }]}>
           <DatePicker />
         </Form.Item>
-        <Form.Item name="vadesi" label="Vadesi" rules={[{ required: true }]}>
-          <DatePicker />
-        </Form.Item>
+        <Form.Item name="vadesi" label="Vadesi">
+  <DatePicker />
+</Form.Item>
       </Form>
     </Modal>
   );

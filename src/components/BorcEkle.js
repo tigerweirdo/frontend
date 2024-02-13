@@ -15,7 +15,7 @@ function BorcEkle() {
           sirket_ismi: values.sirketIsmi,
           fatura_durumu: values.fatura_durumu || false,
           tarih: values.tarih ? values.tarih.format('YYYY-MM-DD') : null,
-          vadesi: values.vadesi ? values.vadesi.format('YYYY-MM-DD') : null,
+          vadesi: values.vadesi ? values.vadesi.format('YYYY-MM-DD') : undefined,
           odendi_mi: false
         };
     
