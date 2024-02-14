@@ -210,15 +210,15 @@ const [filtrelenmisVeSiralanmisBorclar, setFiltrelenmisVeSiralanmisBorclar] = us
                     </Typography.Title>
                     <div className="borc-ozet-info">
                         <div>
-                            <Text strong>Toplam Gider:</Text>
+                            <Text strong>Toplam:</Text>
                             <Text className="borc-ozet-info-text toplam-borc">{toplamBorc} TL</Text>
                         </div>
                         <div>
-                            <Text strong>Ödenen Gider:</Text>
+                            <Text strong>Ödenen:</Text>
                             <Text className="borc-ozet-info-text odenen-borc">{odenenBorc} TL</Text>
                         </div>
                         <div>
-                            <Text strong>Ödenmeyen Gider:</Text>
+                            <Text strong>Ödenmeyen:</Text>
                             <Text className="borc-ozet-info-text odenmeyen-borc">{odenmeyenBorc} TL</Text>
                         </div>
                     </div>
@@ -235,9 +235,9 @@ const [filtrelenmisVeSiralanmisBorclar, setFiltrelenmisVeSiralanmisBorclar] = us
                                 description={
                                     <>
                                         <Text>Bakiye: {item.bakiye} TL</Text><br />
-                                        <Text>Fatura Durumu: {item.fatura_durumu ? "Faturalı" : "Faturasız"}</Text><br />
+                                        <Text>Fatura: {item.fatura_durumu ? "Faturalı" : "Faturasız"}</Text><br />
                                         <Text>Tarih: {moment(item.tarih).format('DD/MM/YYYY')}</Text><br />
-                                        <Text>Vadesi: {moment(item.vadesi).format('DD/MM/YYYY')}</Text>
+                                        <Text>Vade: {moment(item.vadesi).format('DD/MM/YYYY')}</Text>
                                     </>
                                 }
                             />

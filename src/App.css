@@ -86,41 +86,114 @@ display: none;  }
 
 .list-item-content {
   display: flex;
-  justify-content: space-between;
-  align-items: center;
+  flex-direction: column; /* Varsayılan olarak yığılmış görünüm */
   width: 100%;
 }
 
 .list-item-actions {
   display: flex;
-  flex-direction: row;
-  align-items: center;
+  justify-content: center; /* Butonları ortala */
+  margin-top: 10px; /* Meta verilerden biraz boşluk bırak */
 }
+
+/* Büyük ekranlar için stiller */
+
+  .list-item-content {
+    flex-direction: row; /* Büyük ekranlarda yan yana görünüm */
+    justify-content: space-between;
+    align-items: center;
+  }
+
+  .list-item-actions {
+    flex-direction: row;
+  }
+
+
+/* Liste başlığı ve detayları için stil */
+.list-item-meta {
+  flex: 1; /* Meta verilerin esnek olmasını sağla */
+}
+
+/* Metinler ve etiketler için stil */
+.ant-list-item-meta-description {
+  display: flex; /* Her metni yeni satırda göstermek yerine yana yana göster */
+  flex-direction: column; /* Mobil cihazlar için dikey düzen */
+  margin-right: 10px; /* Sağ tarafta biraz boşluk bırak */
+}
+
+/* Büyük ekranlarda metinlerin yanyana olması için stil */
+
+  .ant-list-item-meta-description {
+    flex-direction: row; /* Büyük ekranlarda metinleri yanyana göster */
+    flex-wrap: wrap; /* Eğer yer kalmazsa alt satıra geç */
+  }
+  
+  .ant-list-item-meta-description > span {
+    margin-right: 15px; /* Metinler arası boşluk */
+    margin-bottom: 0; /* Alt satıra geçildiğinde boşluk bırakma */
+  }
+/* Mobil cihazlar için butonları alt alta ve sağa hizala */
+@media (max-width: 768px) {
+  .list-item-actions {
+    display: flex;
+    flex-direction: column; /* Butonları dikey olarak sırala */
+    align-items: flex-end; /* Butonları sağa hizala */
+    margin-top: 10px;
+  }
+
+  .list-item-actions button {
+    margin-bottom: 5px; /* Butonlar arası dikey boşluk */
+  }
+
+  /* Son butonun altında boşluk bırakma */
+  .list-item-actions button:last-child {
+    margin-bottom: 0;
+  }
+}
+
 
 .borc-ozet-header {
   padding: 10px;
   background-color: #f0f2f5;
   border-radius: 8px;
+  display: flex; /* Flex container olarak ayarlayın */
+  flex-direction: column; /* Elementleri dikey olarak sıralayın */
+  align-items: center; /* İçeriği yatay olarak ortala */
 }
 
 .borc-ozet-title {
   margin: 0;
-  text-align: center;
+  text-align: center; /* Başlık metnini ortala */
 }
 
 .borc-ozet-info {
   display: flex;
-  justify-content: space-around;
+  justify-content: center; /* Bilgi bloklarını yatay olarak ortala */
   margin-top: 10px;
+  width: 100%; /* Genişliği parent container'a uydur */
+  flex-wrap: wrap; /* İçerik fazla ise yeni satıra geç */
 }
 
 .borc-ozet-info div {
   display: flex;
   align-items: center;
+  margin: 5px; /* Her bilgi bloğu arasında boşluk bırakın */
 }
 
 .borc-ozet-info-text {
   margin-left: 8px;
+}
+
+/* Medya sorguları ile responsive düzenlemeler */
+@media (max-width: 768px) {
+  .borc-ozet-info {
+    flex-direction: column;
+    align-items: center;
+  }
+
+  .borc-ozet-info div {
+    margin-bottom: 8px;
+  }
 }
 
 .header-container {
